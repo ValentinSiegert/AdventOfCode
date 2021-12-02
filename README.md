@@ -2,7 +2,7 @@
 <br />
 <div align="center">
   <a href="https://gitlab.hrz.tu-chemnitz.de/siev--tu-chemnitz.de/adventofcode">
-    <img src="https://gitlab.hrz.tu-chemnitz.de/siev--tu-chemnitz.de/adventofcode/-/raw/master/_logo/adventOfCode.svg" alt="Advent of Code" height="120">
+    <img src="https://gitlab.hrz.tu-chemnitz.de/siev--tu-chemnitz.de/adventofcode/-/raw/master/_logo/adventOfCode.svg" alt="Advent of Code" height="371">
   </a>
   <h2>Advent of Code</h2>
   <p>
