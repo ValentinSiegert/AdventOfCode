@@ -2,7 +2,7 @@
 if __name__ == '__main__':
     xy = [0, 0]  # horizontal position, depth
     xy2 = [0, 0, 0]  # horizontal position, depth, aim
-    with open('day2.txt') as log_file:
+    with open('day2.log') as log_file:
         for line in log_file:
             command, slope = line.split()
             if command == 'forward':
