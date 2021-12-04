@@ -5,7 +5,7 @@ if __name__ == '__main__':
     last = 0
     deq = deque(maxlen=3)
     windows_slope = []
-    with open('day1.log') as log_file:
+    with open('day1.txt') as log_file:
         for line in log_file:
             current = int(line)
             if last == 0:
