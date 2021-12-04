@@ -12,7 +12,7 @@ def report(bit_strings, bit_criteria):
 
 if __name__ == '__main__':
     count = {index: [0, 0] for index in range(11, -1, -1)}
-    with open('day3.log') as log_file:
+    with open('day3.txt') as log_file:
         for line in log_file:
             for index, bit in enumerate(line.strip()[::-1]):
                 count[index][int(bit)] = count[index][int(bit)] + 1
