@@ -25,10 +25,11 @@ def calc_lowest_risk_ext(risk_levels):
     grid = [[[j, [], []] for j in range(i, i + 5)] for i in range(0, 5)]
     for l in range(len(grid) - 1, -1, -1):
         for c in range(len(grid[0]) - 1, -1, -1):
-            temp_risks = [[j + grid[l][c][0] if j + grid[l][c][0] < 10 else ((j + grid[l][c][0]) % 10) + 1 for j in i]
+            temp_risks = [[j + grid[l][c][0] if j + grid[l][c][0] < 10 else (j + grid[l][c][0]) % 9 for j in i]
                           for i in risk_levels]
             temp_downs = grid[l + 1][c][1] if l + 1 < len(grid) else None
             temp_rights = grid[l][c + 1][2] if c + 1 < len(grid[0]) else None
+            t_debug = copy.deepcopy(temp_risks)
             temp_risks = calc_lowest_risk(temp_risks, temp_downs, temp_rights)
             grid[l][c][1] = temp_risks[0]
             grid[l][c][2] = [t[0] for t in temp_risks]
@@ -40,7 +41,7 @@ def calc_lowest_risk_ext2(risk_levels):
     global_risks = []
     for l1 in range(len(grid)):
         for c1 in range(len(grid[0])):
-            temp_risks = [[j + grid[l1][c1] if j + grid[l1][c1] < 10 else ((j + grid[l1][c1]) % 10) + 1 for j in i]
+            temp_risks = [[j + grid[l1][c1] if j + grid[l1][c1] < 10 else (j + grid[l1][c1]) % 9 for j in i]
                           for i in risk_levels]
             grid[l1][c1] = temp_risks
     for l2 in range(len(grid)):
