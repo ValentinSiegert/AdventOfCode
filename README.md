@@ -36,7 +36,7 @@ This is the gathering of my solutions I created  yet for Advent of Code.
 
 ### 🧱 Built With
 
-Python 3.9
+Python 3.11
 
 ## ⚡ Getting Started
 
