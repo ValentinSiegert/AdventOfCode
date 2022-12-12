@@ -1,29 +1,3 @@
-def hiking_trail(s, e, g):
-    found, nodes = False, s
-    while not found:
-        new_nodes = []
-        for n in nodes:
-            if n == e:
-                found = True
-                break
-            if n[0] > 0 and g[n[1]][n[0] - 1][1] is None and g[n[1]][n[0] - 1][0] <= g[n[1]][n[0]][0] + 1:
-                new_nodes.append((n[0] - 1, n[1]))
-                g[n[1]][n[0] - 1] = (g[n[1]][n[0] - 1][0], g[n[1]][n[0]][1] + 1)
-            if n[0] < len(g[0]) - 1 and g[n[1]][n[0] + 1][1] is None and \
-                    g[n[1]][n[0] + 1][0] <= g[n[1]][n[0]][0] + 1:
-                new_nodes.append((n[0] + 1, n[1]))
-                g[n[1]][n[0] + 1] = (g[n[1]][n[0] + 1][0], g[n[1]][n[0]][1] + 1)
-            if n[1] > 0 and g[n[1] - 1][n[0]][1] is None and g[n[1] - 1][n[0]][0] <= g[n[1]][n[0]][0] + 1:
-                new_nodes.append((n[0], n[1] - 1))
-                g[n[1] - 1][n[0]] = (g[n[1] - 1][n[0]][0], g[n[1]][n[0]][1] + 1)
-            if n[1] < len(g) - 1 and g[n[1] + 1][n[0]][1] is None and \
-                    g[n[1] + 1][n[0]][0] <= g[n[1]][n[0]][0] + 1:
-                new_nodes.append((n[0], n[1] + 1))
-                g[n[1] + 1][n[0]] = (g[n[1] + 1][n[0]][0], g[n[1]][n[0]][1] + 1)
-        nodes = new_nodes
-    return g[e[1]][e[0]][1]
-
-
 def hiking(part):
     mapl = list(map(list, open("day12.txt").read().splitlines()))
     end = (0, 0)
@@ -44,7 +18,29 @@ def hiking(part):
                     else:
                         c = (ord(c), None)
             mapl[y][x] = c
-    return hiking_trail(starts, end, mapl)
+    found, nodes = False, starts
+    while not found:
+        new_nodes = []
+        for n in nodes:
+            if n == end:
+                found = True
+                break
+            if n[0] > 0 and mapl[n[1]][n[0] - 1][1] is None and mapl[n[1]][n[0] - 1][0] <= mapl[n[1]][n[0]][0] + 1:
+                new_nodes.append((n[0] - 1, n[1]))
+                mapl[n[1]][n[0] - 1] = (mapl[n[1]][n[0] - 1][0], mapl[n[1]][n[0]][1] + 1)
+            if n[0] < len(mapl[0]) - 1 and mapl[n[1]][n[0] + 1][1] is None and \
+                    mapl[n[1]][n[0] + 1][0] <= mapl[n[1]][n[0]][0] + 1:
+                new_nodes.append((n[0] + 1, n[1]))
+                mapl[n[1]][n[0] + 1] = (mapl[n[1]][n[0] + 1][0], mapl[n[1]][n[0]][1] + 1)
+            if n[1] > 0 and mapl[n[1] - 1][n[0]][1] is None and mapl[n[1] - 1][n[0]][0] <= mapl[n[1]][n[0]][0] + 1:
+                new_nodes.append((n[0], n[1] - 1))
+                mapl[n[1] - 1][n[0]] = (mapl[n[1] - 1][n[0]][0], mapl[n[1]][n[0]][1] + 1)
+            if n[1] < len(mapl) - 1 and mapl[n[1] + 1][n[0]][1] is None and \
+                    mapl[n[1] + 1][n[0]][0] <= mapl[n[1]][n[0]][0] + 1:
+                new_nodes.append((n[0], n[1] + 1))
+                mapl[n[1] + 1][n[0]] = (mapl[n[1] + 1][n[0]][0], mapl[n[1]][n[0]][1] + 1)
+        nodes = new_nodes
+    return mapl[end[1]][end[0]][1]
 
 
 if __name__ == "__main__":
