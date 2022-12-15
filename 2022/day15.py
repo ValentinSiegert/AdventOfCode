@@ -1,8 +1,8 @@
 import re
 
 
-def impossible_pos(row, file_name, M, part1=True):
-    y_range = list(range(M + 1)) if not part1 else [row]
+def impossible_pos(row, file_name, part1=True):
+    y_range = list(range(row + 1)) if not part1 else [row]
     for Y in y_range:
         stations, scan, sensor_dists_all, sensor_dists = set(), set(), [], []
         manhattan = lambda a, b: abs(a[0] - b[0]) + abs(a[1] - b[1])
@@ -36,12 +36,12 @@ def impossible_pos(row, file_name, M, part1=True):
                 if x < lo:
                     return x * 4000000 + Y
                 x = max(x, hi + 1)
-                if x > M:
+                if x > row:
                     break
 
 
 if __name__ == '__main__':
-    print(f"Part 1 (test): {impossible_pos(10, 'day15t.txt', 0)}")
-    print(f"Part 1: {impossible_pos(2000000, 'day15.txt', 0)}")
-    print(f"Part 2 (test): {impossible_pos(10, 'day15t.txt', 20, False)}")
-    print(f"Part 2: {impossible_pos(2000000, 'day15.txt', 4000000, False)}")
+    print(f"Part 1 (test): {impossible_pos(10, 'day15t.txt')}")
+    print(f"Part 1: {impossible_pos(2000000, 'day15.txt')}")
+    print(f"Part 2 (test): {impossible_pos(20, 'day15t.txt', False)}")
+    print(f"Part 2: {impossible_pos(4000000, 'day15.txt', False)}")
