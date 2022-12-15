@@ -1,5 +1,7 @@
 import re
 
+SAND_START = (500, 0)
+
 
 def stoning():
     scan, deep, u, sr = set(), 0, 0, True
@@ -22,9 +24,9 @@ def stoning():
 
 def sanding(d_, s, ds, part1=True):
     # if (part1 and any(e[0] == d_[0] and e[1] > d_[1] for e in s)) or (not part1):
-    y_min = min(s, key=lambda x: x[1] if x[0] == d_[0] and x[1] > d_[1] else ds + 1)
+    y_min = min(s, key=lambda x: x[1] if x[0] == d_[0] and x[1] > d_[1] else ds + 2)
     d = (d_[0], y_min[1] - 1 if y_min[0] == d_[0] else ds + 1)
-    if (part1 and d[1] > ds) or ((not part1) and d[1] < 0):
+    if (part1 and d[1] > ds) or ((not part1) and SAND_START in s):
         return False
     elif d[1] + 1 != ds + 2 and ((left := (d[0] - 1, d[1] + 1)) not in s):
         return sanding(left, s, ds, part1)
@@ -38,11 +40,11 @@ def sanding(d_, s, ds, part1=True):
 if __name__ == '__main__':
     stones, deep_stone, units, sand_rests = stoning()
     while sand_rests:
-        sand_rests = sanding((500, 0), stones, deep_stone)
+        sand_rests = sanding(SAND_START, stones, deep_stone)
         units += 1 if sand_rests else 0
     print(f"Part 1: {units}")
     stones, deep_stone, units, sand_rests = stoning()
     while sand_rests:
-        sand_rests = sanding((500, 0), stones, deep_stone, False)
+        sand_rests = sanding(SAND_START, stones, deep_stone, False)
         units += 1 if sand_rests else 0
     print(f"Part 2: {units}")
