@@ -1,6 +1,6 @@
 if __name__ == '__main__':
     numbers, ranges, map_ranges, mapped_r = [], [], [], []
-    with open('day05t.txt') as log_file:
+    with open('day05.txt') as log_file:
         for line in log_file:
             if line.strip() == '':
                 map_ranges += [r for i_r, r in enumerate(ranges) if i_r not in mapped_r]
@@ -20,7 +20,7 @@ if __name__ == '__main__':
                 map_r = range(src, src + length)
                 for i_r, r in enumerate(ranges):
                     if i_r not in mapped_r and map_r.start <= r.start and r.stop <= map_r.stop:
-                        map_ranges.append(range(dest + (r.start - map_r.start), dest + (r.stop - r.start)))
+                        map_ranges.append(range((r_s := dest + (r.start - map_r.start)), r_s + (r.stop - r.start)))
                         mapped_r.append(i_r)
                     elif i_r not in mapped_r and map_r.start <= r.start <= map_r.stop and r.stop > map_r.stop:
                         new_r = range((new_start := dest + (r.start - map_r.start)), new_start + (map_r.stop - r.start))
