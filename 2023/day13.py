@@ -16,7 +16,7 @@ def match(row_a: str, row_b: str, smudged: bool = False) -> tuple[bool, bool]:
     return True, smudged
 
 
-def check_mirror(pattern: list[str], transposed: bool = False, smudge: bool = False) -> int:
+def mirror_value(pattern: list[str], transposed: bool = False, smudge: bool = False) -> int:
     """
     Calculates the mirror value within the pattern. The value is defined as either the number of columns left to
     a vertical line or the number of rows above a horizontal line multiplied by 100. Method always only searches for
@@ -43,6 +43,6 @@ if __name__ == '__main__':
     with open('day13.txt') as log_file:
         patterns = list(map(lambda pat: pat.splitlines(), log_file.read().split('\n\n')))
     print(f"Summarizing all mirror values: "
-          f"{sum(map(lambda pt: mv if (mv := check_mirror(pt)) > 0 else check_mirror(pt, True), patterns))}")
+          f"{sum(map(lambda pt: mv if (mv := mirror_value(pt)) > 0 else mirror_value(pt, True), patterns))}")
     print(f"Summarizing all mirror values with smudge: "
-          f"{sum(map(lambda pt: mv if (mv := check_mirror(pt, smudge=True)) > 0 else check_mirror(pt, True, True), patterns))}")
+          f"{sum(map(lambda pt: mv if (mv := mirror_value(pt, smudge=True)) > 0 else mirror_value(pt, True, True), patterns))}")
