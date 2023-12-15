@@ -1,3 +1,16 @@
+def print_boxes(boxes: dict):
+    """
+    Prints the given boxes.
+    :param boxes: The boxes to print.
+    """
+    for label, box in boxes.items():
+        print(f'Box {label}: ', end='')
+        for lens, focal in box.items():
+            print(f'[{lens} {focal}] ', end='')
+        print()
+    print()
+
+
 def hash_str(string: str) -> int:
     """
     Hashes the given string.
@@ -27,12 +40,5 @@ if __name__ == '__main__':
                     boxes[box_label].pop(sequence[:sequence.index('-')])
                 elif lens in boxes[box_label]:
                     boxes.pop(box_label)
-        # print boxes
-        #print(f'After "{sequence}":')
-        #for label, box in boxes.items():
-        #    print(f'Box {label}: ', end='')
-        #    for lens, focal in box.items():
-        #        print(f'[{lens} {focal}] ', end='')
-        #    print()
-        #print()
+        # print_boxes(boxes)
     print(f'The focusing power is: {sum((label + 1) * (slot + 1) * focal for label, box in boxes.items() for slot, focal in enumerate(box.values()))}')
