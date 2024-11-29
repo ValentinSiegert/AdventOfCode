@@ -72,6 +72,18 @@ def print_answer(year: int = int(TODAY.year), day: int = int(TODAY.day), part: i
     print(f"Answer for year {year} day {day} part {part}: {puzzle.answers[part-1]}")
 
 
+@typer_app.command()
+def examples(year: int = int(TODAY.year), day: int = int(TODAY.day)):
+    """
+    Print the examples for the given year and day.
+    :param year: The year of the puzzle.
+    :param day: The day of the puzzle.
+    """
+    puzzle = aocd.models.Puzzle(year=year, day=day)
+    for i, example in enumerate(puzzle.examples):
+        print(f"Example {i}: {example.input_data}")
+
+
 if __name__ == "__main__":
     if not AOCD_DIR.exists():
         os.makedirs(AOCD_DIR)
