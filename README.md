@@ -32,11 +32,11 @@
 
 ## 💡 About
 
-This is the gathering of my solutions I created  yet for Advent of Code.
+This is the gathering of my solutions I created yet for Advent of Code.
 
 ### 🧱 Built With
 
-Python 3.11
+Python 3.13
 
 ## ⚡ Getting Started
 
@@ -44,13 +44,18 @@ Check out [Advent of Code][adventofcode].
 
 ### ⚙️ Setup
 
+With python uv installed, you can sync the repository with the following command:
 ```shell
- pipenv install
+ uv sync
 ```
 
 ## 👟 Usage
 
-Start the day you want to.
+Start the day you want to by using the typer CLI app in aoc.py.
+
+```shell
+ uv run aoc.py --help
+```
 
 ## 👀 Insights
 
