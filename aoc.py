@@ -48,15 +48,13 @@ def r(year: int = int(TODAY.year), day: int = int(TODAY.day), part: int = 0, inp
     solution = __import__(module, fromlist=[''])
     response = solution.solve(input_data, part)
     if not is_example_exec and submit:
-        if part == 1 and not puzzle.answer_a:
+        if part == 1:
             aocd.submit(response, part='a', day=day, year=year)
-        if part == 2 and not puzzle.answer_b:
+        if part == 2:
             aocd.submit(response, part='b', day=day, year=year)
         if part == 0:
-            if not puzzle.answer_a:
-                aocd.submit(response[0], part='a', day=day, year=year)
-            if not puzzle.answer_b:
-                aocd.submit(response[1], part='b', day=day, year=year)
+            aocd.submit(response[0], part='a', day=day, year=year)
+            aocd.submit(response[1], part='b', day=day, year=year)
 
 
 
