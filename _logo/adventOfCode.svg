@@ -2,12 +2,12 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="107.32644mm"
-   height="159.31265mm"
-   viewBox="0 0 107.32644 159.31265"
+   width="132.26024mm"
+   height="155.58691mm"
+   viewBox="0 0 132.26024 155.58691"
    version="1.1"
    id="svg5"
-   inkscape:version="1.1.1 (c3084ef, 2021-09-22)"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
    sodipodi:docname="adventOfCode.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -26,21 +26,23 @@
      showguides="true"
      inkscape:guide-bbox="true"
      inkscape:zoom="0.86940051"
-     inkscape:cx="5.1759804"
-     inkscape:cy="354.84221"
+     inkscape:cx="1.7253268"
+     inkscape:cy="355.41732"
      inkscape:window-width="1920"
      inkscape:window-height="1083"
      inkscape:window-x="0"
-     inkscape:window-y="25"
+     inkscape:window-y="130"
      inkscape:window-maximized="0"
-     inkscape:current-layer="layer1" />
+     inkscape:current-layer="layer1"
+     inkscape:showpageshadow="0"
+     inkscape:deskcolor="#505050" />
   <defs
      id="defs2" />
   <g
      inkscape:label="Ebene 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-43.246872,-46.438394)">
+     transform="translate(-30.777389,-46.484903)">
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#f4f566;fill-opacity:1;stroke:none;stroke-width:0.264583"
@@ -58,31 +60,31 @@
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Hack Nerd Font';-inkscape-font-specification:'Hack Nerd Font';text-align:center;text-anchor:middle;fill:#f4f566;fill-opacity:1;stroke-width:0.264583"
          x="96.907509"
-         y="68.046577"
+         y="67.754852"
          id="tspan749">\|/</tspan><tspan
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Hack Nerd Font';-inkscape-font-specification:'Hack Nerd Font';text-align:center;text-anchor:middle;fill:#f4f566;fill-opacity:1;stroke-width:0.264583"
          x="96.907509"
-         y="81.567429"
+         y="80.983978"
          id="tspan2609">--*--</tspan><tspan
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Hack Nerd Font';-inkscape-font-specification:'Hack Nerd Font';text-align:center;text-anchor:middle;fill:#3d832b;fill-opacity:1;stroke-width:0.264583"
          x="96.907509"
-         y="95.08828"
+         y="94.213104"
          id="tspan2681">&gt;<tspan
    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Hack Nerd Font';-inkscape-font-specification:'Hack Nerd Font';fill:#c58232;fill-opacity:1"
    id="tspan23471">o</tspan>&lt;</tspan><tspan
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Hack Nerd Font';-inkscape-font-specification:'Hack Nerd Font';text-align:center;text-anchor:middle;fill:#3d832b;fill-opacity:1;stroke-width:0.264583"
          x="96.907509"
-         y="108.60913"
+         y="107.44223"
          id="tspan2677">&gt;<tspan
    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Hack Nerd Font';-inkscape-font-specification:'Hack Nerd Font';fill:#235ac5;fill-opacity:1"
    id="tspan20447">0</tspan>&lt;&lt;&lt;</tspan><tspan
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Hack Nerd Font';-inkscape-font-specification:'Hack Nerd Font';text-align:center;text-anchor:middle;fill:#3d832b;fill-opacity:1;stroke-width:0.264583"
          x="96.907509"
-         y="122.12998"
+         y="120.67136"
          id="tspan3277">&gt;&gt;<tspan
    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Hack Nerd Font';-inkscape-font-specification:'Hack Nerd Font';fill:#c58232;fill-opacity:1"
    id="tspan24355">o</tspan>&gt;&gt;<tspan
@@ -91,7 +93,7 @@
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Hack Nerd Font';-inkscape-font-specification:'Hack Nerd Font';text-align:center;text-anchor:middle;fill:#3d832b;fill-opacity:1;stroke-width:0.264583"
          x="96.907509"
-         y="135.65083"
+         y="133.90048"
          id="tspan3279">&gt;<tspan
    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Hack Nerd Font';-inkscape-font-specification:'Hack Nerd Font';fill:#c58232;fill-opacity:1"
    id="tspan25331">o</tspan>&lt;&lt;&lt;<tspan
@@ -100,7 +102,7 @@
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Hack Nerd Font';-inkscape-font-specification:'Hack Nerd Font';text-align:center;text-anchor:middle;fill:#3d832b;fill-opacity:1;stroke-width:0.264583"
          x="96.907509"
-         y="149.17168"
+         y="147.12961"
          id="tspan3281">&gt;&gt;<tspan
    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Hack Nerd Font';-inkscape-font-specification:'Hack Nerd Font';fill:#c42b21;fill-opacity:1"
    id="tspan30477">@</tspan>&gt;<tspan
@@ -111,7 +113,7 @@
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Hack Nerd Font';-inkscape-font-specification:'Hack Nerd Font';text-align:center;text-anchor:middle;fill:#3d832b;fill-opacity:1;stroke-width:0.264583"
          x="96.907509"
-         y="162.69254"
+         y="160.35872"
          id="tspan4081">&gt;<tspan
    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Hack Nerd Font';-inkscape-font-specification:'Hack Nerd Font';fill:#c58232;fill-opacity:1"
    id="tspan25837">o</tspan>&gt;&gt;<tspan
@@ -124,7 +126,7 @@
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Hack Nerd Font';-inkscape-font-specification:'Hack Nerd Font';text-align:center;text-anchor:middle;fill:#3d832b;fill-opacity:1;stroke-width:0.264583"
          x="96.907509"
-         y="176.21338"
+         y="173.58784"
          id="tspan4335">&gt;<tspan
    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Hack Nerd Font';-inkscape-font-specification:'Hack Nerd Font';fill:#f4f566;fill-opacity:1"
    id="tspan17661">*</tspan>&gt;&gt;<tspan
@@ -139,7 +141,7 @@
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Hack Nerd Font';-inkscape-font-specification:'Hack Nerd Font';text-align:center;text-anchor:middle;fill:#3d832b;fill-opacity:1;stroke-width:0.264583"
          x="96.907509"
-         y="189.73422"
+         y="186.81697"
          id="tspan4469">&gt;<tspan
    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Hack Nerd Font';-inkscape-font-specification:'Hack Nerd Font';fill:#c58232;fill-opacity:1"
    id="tspan27773">o</tspan>&gt;<tspan
@@ -156,7 +158,7 @@
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Hack Nerd Font';-inkscape-font-specification:'Hack Nerd Font';text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
          x="96.907509"
-         y="203.25508"
+         y="200.0461"
          id="tspan4471">_ __|  |__ _</tspan></text>
   </g>
 </svg>
