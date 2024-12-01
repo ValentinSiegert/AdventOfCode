@@ -1,8 +1,8 @@
 
 <br />
 <div align="center">
-  <a href="https://gitlab.hrz.tu-chemnitz.de/siev--tu-chemnitz.de/adventofcode">
-    <img src="https://gitlab.hrz.tu-chemnitz.de/siev--tu-chemnitz.de/adventofcode/-/raw/master/_logo/adventOfCode.svg" alt="Advent of Code" height="371">
+  <a href="https://github.com/ValentinSiegert/AdventOfCode">
+    <img src="https://raw.githubusercontent.com/ValentinSiegert/AdventOfCode/refs/heads/master/_logo/adventOfCode.png" alt="Advent of Code" height="371">
   </a>
   <h2>Advent of Code</h2>
   <p>
@@ -11,9 +11,7 @@
     <br />
     <a href="https://adventofcode.com/" target="_blank">Advent of Code</a>
     ·
-    <a href="https://gitlab.hrz.tu-chemnitz.de/siev--tu-chemnitz.de/adventofcode/-/issues">Report Bug</a>
-    ·
-    <a href="mailto:valentin.siegert@informatik.tu-chemnitz.de?subject=Question on Advent of Code">Ask Question</a>
+    <a href="https://github.com/ValentinSiegert">My GitHub Profile</a>
   </p>
 </div>
 
@@ -36,7 +34,10 @@ This is the gathering of my solutions I created yet for Advent of Code.
 
 ### 🧱 Built With
 
-Python 3.13
+- [uv](https://github.com/astral-sh/uv)
+- Python 3.13
+- [Advent-of-Code-Data](https://github.com/wimglenn/advent-of-code-data)
+- [Typer](https://typer.tiangolo.com/)
 
 ## ⚡ Getting Started
 
