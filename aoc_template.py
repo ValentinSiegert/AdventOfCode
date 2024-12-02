@@ -1,11 +1,11 @@
 
-def part1(data):
+def part1(data: str):
     return "Solve part 1 here"
 
-def part2(data):
+def part2(data: str):
     return "Solve part 2 here"
 
-def solve(data, part):
+def solve(data: str, part: int):
     if part == 1:
         return part1(data)
     if part == 2:
