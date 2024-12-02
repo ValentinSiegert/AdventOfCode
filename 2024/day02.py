@@ -25,7 +25,7 @@ def validate_reports(data: str, skip_one : bool = False) -> int:
     reports = [list(map(int, line.split())) for line in data.splitlines()]
     valid_reports = 0
     for report in reports:
-        direction, is_valid_report, skip_one_in_report, idx, skips = "", False, skip_one, 0, []
+        direction, is_valid_report, skip_one_in_report, idx, skips, skips_iter = "", False, skip_one, 0, [], iter([])
         while idx < len(report):
             if idx == len(report) - 1:
                 is_valid_report = True
@@ -40,9 +40,9 @@ def validate_reports(data: str, skip_one : bool = False) -> int:
                     skips.append((skip_right, idx, 2)) if (skip_right := valid_pair((report[idx], report[idx + 2]), last_direction)) else None
                     skips.append((skip_first, idx, 1)) if (skip_first := valid_pair((report[1], report[2]), '')) and idx == 1 else None
                     skips.append((skip_second, idx, 1)) if (skip_second := valid_pair((report[0], report[2]), '')) and idx == 1 else None
+                    skips_iter = iter(skips)
                     skip_one_in_report = False
-                if skips:
-                    next_skip = skips.pop(0)
+                if next_skip := next(skips_iter, False):
                     direction = '' if next_skip[0] == "empty" else next_skip[0]
                     idx = next_skip[1] + next_skip[2]
                 else:
