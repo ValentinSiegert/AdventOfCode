@@ -5,11 +5,11 @@ def mul(a: int, b: int):
 
 
 def part1(data: str):
-    return sum([eval(match) for match in re.findall(r"mul\(\d+,\d+\)", data)])
+    return sum([eval(match) for match in re.findall(r"mul\(\d{1,3},\d{1,3}\)", data)])
 
 def part2(data: str):
     active, muls = True, []
-    for match in re.findall(r"mul\(\d+,\d+\)|don't\(\)|do\(\)", data):
+    for match in re.findall(r"mul\(\d{1,3},\d{1,3}\)|don't\(\)|do\(\)", data):
         if match == "don't()":
             active = False
         elif match == "do()":
