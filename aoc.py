@@ -6,6 +6,19 @@ from pathlib import Path
 from typing_extensions import Annotated
 
 
+class Color:
+   PURPLE = '\033[95m'
+   CYAN = '\033[96m'
+   DARKCYAN = '\033[36m'
+   BLUE = '\033[94m'
+   GREEN = '\033[92m'
+   YELLOW = '\033[93m'
+   RED = '\033[91m'
+   BOLD = '\033[1m'
+   UNDERLINE = '\033[4m'
+   END = '\033[0m'
+
+
 # Constants
 CWD = Path(os.getcwd())
 AOCD_DIR = CWD / 'aocd'
@@ -14,6 +27,7 @@ os.environ['AOCD_DIR'] = str(AOCD_DIR)
 TODAY = datetime.datetime.today()
 
 typer_app = typer.Typer()
+
 
 @typer_app.command(name='r')
 def run(year: Annotated[int, typer.Option("--year", "-y")] = int(TODAY.year),
@@ -66,15 +80,19 @@ def run(year: Annotated[int, typer.Option("--year", "-y")] = int(TODAY.year),
 @typer_app.command(name='p')
 def print_answer(year: Annotated[int, typer.Option("--year", "-y")] = int(TODAY.year),
                  day: Annotated[int, typer.Option("--day", "-d")] = int(TODAY.day),
-                 part: Annotated[int, typer.Option("--part", "-p")] = 1):
+                 part: Annotated[int, typer.Option("--part", "-p")] = 0):
     """
     Print the answer for the given year and day and part.
     :param year: The year of the puzzle.
     :param day: The day of the puzzle.
-    :param part: The part of the puzzle.
+    :param part: The part of the puzzle. 0 for both parts.
     """
     puzzle = aocd.models.Puzzle(year=year, day=day)
-    print(f"Answer for year {year} day {day} part {part}: {puzzle.answers[part-1]}")
+    if part == 0:
+        print(f"{Color.BOLD}{Color.BLUE}Answer for year {year} day {day} part 1:{Color.END}\n{puzzle.answers[0]}")
+        print(f"{Color.BOLD}{Color.BLUE}Answer for year {year} day {day} part 2:{Color.END}\n{puzzle.answers[1]}")
+    elif part in [1, 2]:
+        print(f"{Color.BOLD}{Color.BLUE}Answer for year {year} day {day} part {part}:{Color.END}\n{puzzle.answers[part-1]}")
 
 
 @typer_app.command(name='e')
@@ -87,7 +105,7 @@ def examples(year: Annotated[int, typer.Option("--year", "-y")] = int(TODAY.year
     """
     puzzle = aocd.models.Puzzle(year=year, day=day)
     for i, example in enumerate(puzzle.examples):
-        print(f"Example {i}: {example.input_data}")
+        print(f"{Color.BOLD}{Color.YELLOW}Example {i} for year {year} day {day}:{Color.END}\n{example.input_data}\n")
 
 
 if __name__ == "__main__":
