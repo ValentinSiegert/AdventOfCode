@@ -75,6 +75,7 @@ def part1(field: list[str]):
         raise ValueError(f"Recursion: {xmas_counter_rec}, Iteration: {xmas_counter}")
     return xmas_counter
 
+
 def part2(field: list[str]):
     x_mas_counter = 0
     for idy, line in enumerate(field):
