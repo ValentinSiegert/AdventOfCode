@@ -3,6 +3,7 @@ import os
 import shutil
 import typer
 from pathlib import Path
+from typing_extensions import Annotated
 
 
 # Constants
@@ -14,8 +15,12 @@ TODAY = datetime.datetime.today()
 
 typer_app = typer.Typer()
 
-@typer_app.command()
-def r(year: int = int(TODAY.year), day: int = int(TODAY.day), part: int = 0, input_data: str = "", submit: bool = False):
+@typer_app.command(name='r')
+def run(year: Annotated[int, typer.Option("--year", "-y")] = int(TODAY.year),
+        day: Annotated[int, typer.Option("--day", "-d")] = int(TODAY.day),
+        part: Annotated[int, typer.Option("--part", "-p")] = 0,
+        input_data: Annotated[str, typer.Option("--input", "-i")] = "",
+        submit: Annotated[bool, typer.Option("--submit", "-s")] = False):
     """
     Run the solution for the given year and day.
     :param year: The year of the puzzle.
@@ -58,8 +63,10 @@ def r(year: int = int(TODAY.year), day: int = int(TODAY.day), part: int = 0, inp
 
 
 
-@typer_app.command()
-def print_answer(year: int = int(TODAY.year), day: int = int(TODAY.day), part: int = 1):
+@typer_app.command(name='p')
+def print_answer(year: Annotated[int, typer.Option("--year", "-y")] = int(TODAY.year),
+                 day: Annotated[int, typer.Option("--day", "-d")] = int(TODAY.day),
+                 part: Annotated[int, typer.Option("--part", "-p")] = 1):
     """
     Print the answer for the given year and day and part.
     :param year: The year of the puzzle.
@@ -70,8 +77,9 @@ def print_answer(year: int = int(TODAY.year), day: int = int(TODAY.day), part: i
     print(f"Answer for year {year} day {day} part {part}: {puzzle.answers[part-1]}")
 
 
-@typer_app.command()
-def examples(year: int = int(TODAY.year), day: int = int(TODAY.day)):
+@typer_app.command(name='e')
+def examples(year: Annotated[int, typer.Option("--year", "-y")] = int(TODAY.year),
+             day: Annotated[int, typer.Option("--day", "-d")] = int(TODAY.day)):
     """
     Print the examples for the given year and day.
     :param year: The year of the puzzle.
