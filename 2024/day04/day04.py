@@ -64,13 +64,6 @@ def find_xmas(field: list[str], x: int, y: int) -> int:
     return counter
 
 
-def find_x_mas(field: list[str], x: int, y: int) -> bool:
-    if (x - 1 >= 0 and y - 1 >= 0 and x + 1 < len(field[y]) and y + 1 < len(field) and
-            {field[y-1][x-1], field[y+1][x+1]} == {field[y-1][x+1], field[y+1][x-1]} == {'M', 'S'}):
-            return True
-    return False
-
-
 def part1(field: list[str]):
     xmas_counter = xmas_counter_rec = 0
     for idy, line in enumerate(field):
@@ -86,7 +79,8 @@ def part2(field: list[str]):
     x_mas_counter = 0
     for idy, line in enumerate(field):
         for idx, char in enumerate(line):
-            if char == "A" and find_x_mas(field, idx, idy):
+            if (char == "A" and idx - 1 >= 0 and idy - 1 >= 0 and idx + 1 < len(field[idy]) and idy + 1 < len(field) and
+                    {field[idy-1][idx-1], field[idy+1][idx+1]} == {field[idy-1][idx+1], field[idy+1][idx-1]} == {'M', 'S'}):
                 x_mas_counter += 1
     return x_mas_counter
 
