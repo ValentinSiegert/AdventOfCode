@@ -85,6 +85,7 @@ def part2(field: list[str]):
                 x_mas_counter += 1
     return x_mas_counter
 
+
 def solve(data: str, part: int):
     field = data.splitlines()
     if part == 1:
