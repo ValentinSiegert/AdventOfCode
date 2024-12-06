@@ -55,7 +55,7 @@ def run(year: Annotated[int, typer.Option("--year", "-y")] = int(TODAY.year),
             with open(day_dir / '__init__.py', 'w') as f:
                 f.write('')
         shutil.copy(AOC_TEMPLATE, day_dir / f'day{day:02}.py')
-        print(f"Just initialized year {year} day {day} files, riddle me this!")
+        print(f"{Color.BOLD}{Color.GREEN}Just initialized year {year} day {day} files, riddle me this!{Color.END}")
         exit(0)
     puzzle = aocd.models.Puzzle(year=year, day=day)
     is_example_exec = (len(input_data) == 1 and input_data.isnumeric())
