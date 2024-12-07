@@ -2,7 +2,10 @@
 <br />
 <div align="center">
   <a href="https://github.com/ValentinSiegert/AdventOfCode">
-    <img src="https://raw.githubusercontent.com/ValentinSiegert/AdventOfCode/refs/heads/master/_logo/adventOfCode.png" alt="Advent of Code" height="371">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ValentinSiegert/AdventOfCode/refs/heads/master/_logo/adventOfCode.png">
+      <img alt="Advent of Code" height="371" src="https://raw.githubusercontent.com/ValentinSiegert/AdventOfCode/refs/heads/master/_logo/adventOfCode_light.png">
+    </picture>
   </a>
   <h2>Advent of Code</h2>
   <p>
