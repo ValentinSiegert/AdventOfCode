@@ -25,15 +25,12 @@ def first_blocking_coord(data: str) -> str:
         fallen_bytes = [(int(x), int(y)) for x, y in [row.split(",") for row in data.splitlines()]][:i]
         if fallen_bytes[-1] in path:
             shortest, path = dijkstra(fallen_bytes)
-            print(f'{i}: {shortest}')
         if shortest == - 1:
-            print(fallen_bytes[-1])
             return f'{fallen_bytes[-1][0]},{fallen_bytes[-1][1]}'
 
 
 def solve(data: str, part: int):
     r1, _ = dijkstra([(int(x),int(y)) for x,y in [row.split(",") for row in data.splitlines()]][:F])
-    print(r1)
     if part == 1:
         return r1
     if part == 2:
