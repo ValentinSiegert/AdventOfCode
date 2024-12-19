@@ -13,6 +13,6 @@ def solve(data: str, part: int):
     @cache
     def displayable_solutions(pattern: str) -> int:
         if pattern == '': return 1
-        return sum(displayable_solutions(pattern[len(tw):]) for tw in [t for t in towels if pattern.startswith(t)])
+        return sum(displayable_solutions(pattern[len(t):]) for t in towels if pattern.startswith(t))
     if part == 2: return sum([displayable_solutions(pat) for pat in patterns])
     return [sum([displayable(pat) for pat in patterns]), sum([displayable_solutions(pat) for pat in patterns])]
