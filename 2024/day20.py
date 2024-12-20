@@ -1,5 +1,5 @@
 
-def dijkstra(race_map: list[list[str]], start: tuple[int, int],
+def dijkstra(race_map: list[str], start: tuple[int, int],
              end: tuple[int, int]) -> tuple[dict[tuple[int,int], int], list[tuple[int, int]]]:
     stack, visited, path = [(start[0], start[1], [(start[0],start[1])])], dict(), []
     while stack:
@@ -15,18 +15,15 @@ def dijkstra(race_map: list[list[str]], start: tuple[int, int],
 
 
 def cheat(visited: dict[tuple[int,int], int], path: list[tuple[int, int]], cheat_max: int) -> int:
-    cheats = dict()
-    for point in path:
-        for s, e, cl in [(point, c, clt) for c in path if c != point and visited[point] < visited[c] and
-                                                         1 < (clt := abs(point[0] - c[0]) + abs(point[1] - c[1]))
-                                                         <= cheat_max]:
-            if (saved := visited[e] - (visited[s] + cl)) >= 100:
-                cheats[saved] = cheats[saved] + 1 if saved in cheats else 1
-    return sum(v for k, v in cheats.items())
+    cheats100 = 0
+    for s, e, cl in [(p1, p2, clt) for i, p1 in enumerate(path) for p2 in path[i+1:]
+                     if 1 < (clt := abs(p1[0] - p2[0]) + abs(p1[1] - p2[1])) <= cheat_max]:
+        if visited[e] - (visited[s] + cl) >= 100: cheats100 += 1
+    return cheats100
 
 
 def solve(data: str, part: int):
-    race_map, s, e = [list(line) for line in data.splitlines()], (-1, -1), (-1, -1)
+    race_map, s, e = [line for line in data.splitlines()], (-1, -1), (-1, -1)
     for y, row in enumerate(race_map):
         for x, cell in enumerate(row):
             s = (x, y) if cell == 'S' else s
