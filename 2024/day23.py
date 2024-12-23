@@ -39,7 +39,6 @@ def solve(data: str, part: int):
         con1, con2 = con.split("-")
         network.setdefault(con1, []).append(con2)
         network.setdefault(con2, []).append(con1)
-    if part == 1:
-        return part1(network)
+    if part == 1: return part1(network)
     if part == 2: return ','.join(sorted(part2(network, set(), set(network.keys()), set())))
     return [part1(network), ','.join(sorted(part2(network, set(), set(network.keys()), set())))]
