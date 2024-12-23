@@ -8,7 +8,7 @@ def part1(network: dict[str, list[str]]) -> int:
     threer = set()
     for host, cons in network.items():
         for con in cons:
-            for con2 in {c for c in network[con] if c != host}.intersection({c for c in network[host] if c != con}):
+            for con2 in {c for c in network[con] if c != host} & {c for c in network[host] if c != con}:
                 threer.add(tuple(sorted([host, con, con2])))
     return sum(1 for ts in threer if any(t.startswith('t') for t in ts))
 
@@ -27,8 +27,7 @@ def part2(network: dict[str, list[str]], currents, prospectives, processeds) -> 
     max_clique = set()
     for v in list(prospectives):
         clique = part2(network, currents | {v}, prospectives & set(network[v]), processeds & set(network[v]))
-        if len(clique) > len(max_clique):
-            max_clique = clique
+        if len(clique) > len(max_clique): max_clique = clique
         prospectives.remove(v)
         processeds.add(v)
     return max_clique
@@ -42,7 +41,5 @@ def solve(data: str, part: int):
         network.setdefault(con2, []).append(con1)
     if part == 1:
         return part1(network)
-    lan = ','.join(sorted(part2(network, set(), set(network.keys()), set())))
-    # print(lan)
-    if part == 2: return lan
-    return [part1(network), lan]
+    if part == 2: return ','.join(sorted(part2(network, set(), set(network.keys()), set())))
+    return [part1(network), ','.join(sorted(part2(network, set(), set(network.keys()), set())))]
