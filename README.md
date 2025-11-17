@@ -38,7 +38,7 @@ This is the gathering of my solutions I created yet for Advent of Code.
 ### 🧱 Built With
 
 - [uv](https://github.com/astral-sh/uv)
-- Python 3.13
+- Python 3.14
 - [Advent-of-Code-Data](https://github.com/wimglenn/advent-of-code-data)
 - [Typer](https://typer.tiangolo.com/)
 
