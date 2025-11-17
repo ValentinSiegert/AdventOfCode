@@ -43,6 +43,7 @@ def run(year: Annotated[int, typer.Option("--year", "-y")] = int(TODAY.year),
     :param part: The part of the puzzle to run, 0 for both parts.
     :param input_data: The input to use for the puzzle. If a single digit number is given, it will use the example input indexed by that number.
     :param submit: Whether to submit the answer to the AoC website.
+    :param measure: Whether to measure the execution time.
     """
     year_create = not (year_dir := (CWD / f"{year}")).exists()
     day_create = not (day_dir := (year_dir / f'day{day:02}')).exists()
