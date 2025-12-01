@@ -72,12 +72,13 @@ def run(year: Annotated[int, typer.Option("--year", "-y")] = int(TODAY.year),
         start = time.time()
     response = solution.solve(input_data, part)
     if measure:
+        time_str = f'{time_diff:.4f} seconds' if (time_diff := time.time() - start) > 1.000 else f'{time_diff*1000:.4f} milliseconds'
         if part == 0:
-            print(f"{Color.BOLD}{Color.BLUE}Execution time for both parts:{Color.END} {time.time() - start:.4f} seconds")
+            print(f"{Color.BOLD}{Color.BLUE}Execution time for both parts:{Color.END} {time_str}")
         if part == 1:
-            print(f"{Color.BOLD}{Color.BLUE}Execution time for part 1:{Color.END} {time.time() - start:.4f} seconds")
+            print(f"{Color.BOLD}{Color.BLUE}Execution time for part 1:{Color.END} {time_str}")
         if part == 2:
-            print(f"{Color.BOLD}{Color.BLUE}Execution time for part 2:{Color.END} {time.time() - start:.4f} seconds")
+            print(f"{Color.BOLD}{Color.BLUE}Execution time for part 2:{Color.END} {time_str}")
     if not is_example_exec and submit:
         if part == 1:
             aocd.submit(response, part='a', day=day, year=year)
