@@ -1,6 +1,6 @@
 
-def part1(data: str, p2: bool = False) -> int:
-    beams, splitter, new_beams = {((lines:=data.splitlines())[0].index('S'), 1): 1}, 0, {}
+def tachyon(data: str) -> tuple[int, int]:
+    beams, new_beams, splitter = {((lines:=data.splitlines())[0].index('S'), 1): 1}, {}, 0
     for index in range(1, len(lines)):
         for point in beams:
             if lines[index][point[0]] == '^':
@@ -10,12 +10,12 @@ def part1(data: str, p2: bool = False) -> int:
             else:
                 new_beams[(point[0], index + 1)] = new_beams[(point[0], index + 1)] + beams[point] if (point[0], index + 1) in new_beams else beams[point]
         beams, new_beams = new_beams.copy(), {}
-    return splitter if not p2 else sum(beams.values())
+    return splitter, sum(beams.values())
 
 
-def solve(data: str, part: int):
+def solve(data: str, part: int) -> int | tuple[int, int]:
     if part == 1:
-        return part1(data)
+        return tachyon(data)[0]
     if part == 2:
-        return part1(data, True)
-    return [part1(data), part1(data, True)]
+        return tachyon(data)[1]
+    return tachyon(data)
