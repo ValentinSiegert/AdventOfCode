@@ -1,7 +1,7 @@
 from itertools import combinations
 
 
-def point_in_rg(x, y, reds):
+def point_inside(x, y, reds):
     inside = False
     for i in range(reds_amount:= len(reds)):
         (x1, y1), (x2, y2) = reds[i], reds[(i + 1) % reds_amount]
@@ -17,7 +17,7 @@ def point_in_rg(x, y, reds):
 
 def rect_inside(p1, p2, poly):
     for cx, cy in (corners := [((x_min:=min(p1[0], p2[0])), (y_min:=min(p1[1], p2[1]))), ((x_max:=max(p1[0], p2[0])), y_min), (x_max, (y_max:=max(p1[1], p2[1]))), (x_min, y_max)]):
-        if not point_in_rg(cx, cy, poly):
+        if not point_inside(cx, cy, poly):
             return False
     for i in range(red_amounts:= len(poly)):
         e1, e2 = poly[i], poly[(i + 1) % red_amounts]
@@ -29,26 +29,19 @@ def rect_inside(p1, p2, poly):
     return True
 
 
-def part1(reds: list[tuple[int, int]]) -> int:
+def largest_square(data: str, p2: bool = False) -> int:
+    reds, largest = [tuple(int(n) for n in line.split(',')) for line in data.splitlines()], 0
     largest = 0
     for p1, p2 in combinations(reds, 2):
-        largest = max(largest, (abs(p1[0] - p2[0]) + 1) * (abs(p1[1] - p2[1]) + 1))
-    return largest
-
-
-def part2(reds: list[tuple[int, int]]) -> int:
-    largest = 0
-    for p1, p2 in combinations(reds, 2):
-        if not rect_inside(p1, p2, reds):
+        if p2 and not rect_inside(p1, p2, reds):
             continue
         largest = max(largest, (abs(p1[0] - p2[0]) + 1) * (abs(p1[1] - p2[1]) + 1))
     return largest
 
 
 def solve(data: str, part: int):
-    reds = [tuple(int(n) for n in line.split(',')) for line in data.splitlines()]
     if part == 1:
-        return part1(reds)
+        return largest_square(data)
     if part == 2:
-        return part2(reds)
-    return [part1(reds), part2(reds)]
+        return largest_square(data, True)
+    return [largest_square(data), largest_square(data, True)]
