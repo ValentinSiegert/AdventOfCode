@@ -16,12 +16,11 @@ def point_inside(x, y, reds):
     return inside
 
 def rect_inside(p1, p2, poly):
-    for cx, cy in (corners := [((x_min:=min(p1[0], p2[0])), (y_min:=min(p1[1], p2[1]))), ((x_max:=max(p1[0], p2[0])), y_min), (x_max, (y_max:=max(p1[1], p2[1]))), (x_min, y_max)]):
-        if not point_inside(cx, cy, poly):
-            return False
+    if not point_inside(p1[0], p2[1], poly) or not point_inside(p2[0], p1[1], poly):
+        return False
     for i in range(red_amounts:= len(poly)):
         e1, e2 = poly[i], poly[(i + 1) % red_amounts]
-        for r1, r2 in [(corners[0], corners[1]), (corners[1], corners[2]), (corners[2], corners[3]), (corners[3], corners[0])]:
+        for r1, r2 in [(p1, (p1[0], p2[1])), ((p1[0], p2[1]), p2), (p2, (p2[0], p1[1])), ((p2[0], p1[1]), p1)]:
             if ((((r2[0] - r1[0]) * (e1[1] - r1[1]) - (r2[1] - r1[1]) * (e1[0] - r1[0])) * ((r2[0] - r1[0]) * (e2[1] - r1[1]) - (r2[1] - r1[1]) * (e2[0] - r1[0])) < 0) and
                     (((e2[0] - e1[0]) * (r1[1] - e1[1]) - (e2[1] - e1[1]) * (r1[0] - e1[0])) * ((e2[0] - e1[0]) * (r2[1] - e1[1]) - (e2[1] - e1[1]) * (r2[0] - e1[0])) < 0) and
                     r1 not in (e1, e2) and r2 not in (e1, e2)):
@@ -29,13 +28,14 @@ def rect_inside(p1, p2, poly):
     return True
 
 
-def largest_square(data: str, p2: bool = False) -> int:
+def largest_square(data: str, part2: bool = False) -> int:
     reds, largest = [tuple(int(n) for n in line.split(',')) for line in data.splitlines()], 0
     largest = 0
     for p1, p2 in combinations(reds, 2):
-        if p2 and not rect_inside(p1, p2, reds):
+        if ((square:=(abs(p1[0] - p2[0]) + 1) * (abs(p1[1] - p2[1]) + 1)) <= largest or
+                (part2 and not rect_inside(p1, p2, reds))):
             continue
-        largest = max(largest, (abs(p1[0] - p2[0]) + 1) * (abs(p1[1] - p2[1]) + 1))
+        largest = square
     return largest
 
 
