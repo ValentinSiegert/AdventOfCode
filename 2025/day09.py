@@ -1,7 +1,7 @@
 from itertools import combinations
 
 
-def point_inside(x, y, reds):
+def point_inside(x: int, y: int, reds: list[tuple[int, ...]]) -> bool:
     inside = False
     for i in range(reds_amount:= len(reds)):
         (x1, y1), (x2, y2) = reds[i], reds[(i + 1) % reds_amount]
@@ -15,15 +15,15 @@ def point_inside(x, y, reds):
             inside = not inside if x_int >= x else inside
     return inside
 
-def rect_inside(p1, p2, poly):
-    if not point_inside(p1[0], p2[1], poly) or not point_inside(p2[0], p1[1], poly):
+def rect_inside(p1: tuple[int, ...], p2: tuple[int, ...], reds: list[tuple[int, ...]]) -> bool:
+    if not point_inside(p1[0], p2[1], reds) or not point_inside(p2[0], p1[1], reds):
         return False
-    for i in range(red_amounts:= len(poly)):
-        e1, e2 = poly[i], poly[(i + 1) % red_amounts]
+    for i in range(red_amounts:= len(reds)):
+        e1, e2 = reds[i], reds[(i + 1) % red_amounts]
         for r1, r2 in [(p1, (p1[0], p2[1])), ((p1[0], p2[1]), p2), (p2, (p2[0], p1[1])), ((p2[0], p1[1]), p1)]:
-            if ((((r2[0] - r1[0]) * (e1[1] - r1[1]) - (r2[1] - r1[1]) * (e1[0] - r1[0])) * ((r2[0] - r1[0]) * (e2[1] - r1[1]) - (r2[1] - r1[1]) * (e2[0] - r1[0])) < 0) and
-                    (((e2[0] - e1[0]) * (r1[1] - e1[1]) - (e2[1] - e1[1]) * (r1[0] - e1[0])) * ((e2[0] - e1[0]) * (r2[1] - e1[1]) - (e2[1] - e1[1]) * (r2[0] - e1[0])) < 0) and
-                    r1 not in (e1, e2) and r2 not in (e1, e2)):
+            if (not {r1, r2}.intersection({e1, e2}) and
+                    (((r2[0] - r1[0]) * (e1[1] - r1[1]) - (r2[1] - r1[1]) * (e1[0] - r1[0])) * ((r2[0] - r1[0]) * (e2[1] - r1[1]) - (r2[1] - r1[1]) * (e2[0] - r1[0])) < 0) and
+                    (((e2[0] - e1[0]) * (r1[1] - e1[1]) - (e2[1] - e1[1]) * (r1[0] - e1[0])) * ((e2[0] - e1[0]) * (r2[1] - e1[1]) - (e2[1] - e1[1]) * (r2[0] - e1[0])) < 0)):
                 return False
     return True
 
@@ -39,9 +39,9 @@ def largest_square(data: str, part2: bool = False) -> int:
     return largest
 
 
-def solve(data: str, part: int):
+def solve(data: str, part: int) -> int | tuple[int, int]:
     if part == 1:
         return largest_square(data)
     if part == 2:
         return largest_square(data, True)
-    return [largest_square(data), largest_square(data, True)]
+    return largest_square(data), largest_square(data, True)
