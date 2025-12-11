@@ -3,7 +3,7 @@ from itertools import combinations
 from math import prod
 
 
-def jboxes(data: str, p2: bool = False):
+def jboxes(data: str, p2: bool = False) -> int:
     points = list(map(lambda d: tuple(map(int,d.split(','))), data.splitlines()))
     pairs = [(p, q, sum((a - b) ** 2 for a, b in zip(p, q))) for p, q in combinations(points, 2)]
     pairs = heapq.nsmallest((len(pairs) if p2 else 1000), pairs, key=lambda x: x[2])
@@ -18,9 +18,9 @@ def jboxes(data: str, p2: bool = False):
     return pair[0][0] * pair[1][0] if p2 else prod(sorted([len([p for p in circuits.values() if p == c]) for c in set(circuits.values())], reverse=True)[:3])
 
 
-def solve(data: str, part: int):
+def solve(data: str, part: int) -> int | tuple[int, int]:
     if part == 1:
         return jboxes(data)
     if part == 2:
         return jboxes(data, True)
-    return [jboxes(data), jboxes(data, True)]
+    return jboxes(data), jboxes(data, True)

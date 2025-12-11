@@ -35,7 +35,6 @@ def start_machines(data: str, parts: int = 0, own_code = True, print_out: bool =
                     matrix[d, j] += 1.0  # each press adds 1 to those dimensions
             res = milp(c=np.ones(len(buttons), dtype=float), # it is the objective to minimize sum x_i
                        integrality=np.ones(len(buttons), dtype=int), # all integer
-                       bounds=Bounds(lb=np.zeros(len(buttons)), ub=np.full(len(buttons), np.inf)), # x_i >= 0 but no upper bound
                        constraints=LinearConstraint(matrix, lb=target, ub=target)) # constraints matrix @ x == target
             if res.success:
                 jolt_t += int(res.x.round().astype(int).sum())
@@ -53,7 +52,7 @@ def start_machines(data: str, parts: int = 0, own_code = True, print_out: bool =
                     gain = sum(1 for d in b if remaining[d] > 0)
                     if gain > best_gain:
                         best_btn, best_gain = idx, gain
-                if best_gain == 0:
+                if best_gain == 0 or best_btn is None:
                     # no button can help further, so greedy cannot solve this instance
                     greedy_presses = inf
                     break
@@ -123,11 +122,11 @@ def start_machines(data: str, parts: int = 0, own_code = True, print_out: bool =
                     if rem < max_use:
                         max_use = rem
                 if max_use is inf:
-                    max_use = 0
+                    max_use = int(0)
                 if best < inf and max_use > best - presses:
                     max_use = best - presses
                 # additional heuristic cap: do not allow a single button to be used more than max_use times
-                max_use = min(50, max_use)
+                max_use = int(min(50, max_use))
                 for use in range(max_use, 0, -1):
                     new_remaining, changed = remaining[:], False
                     for d in b:
@@ -139,7 +138,7 @@ def start_machines(data: str, parts: int = 0, own_code = True, print_out: bool =
                     if (new_presses := presses + use) >= best or new_remaining == remaining:
                         continue
                     stack.append((button_idx + 1, new_remaining, new_presses))
-            jolt_t += best
+            jolt_t += int(best)
             printer_count += 1
             print_out and print(f'{time.strftime("%H:%M:%S")} - Line {printer_count} done, current jolt is {jolt_t}, best presses: {best}')
     if parts == 1:
@@ -149,9 +148,9 @@ def start_machines(data: str, parts: int = 0, own_code = True, print_out: bool =
         print_out and print(f'{time.strftime("%H:%M:%S")} - All lines done, final jolt is {jolt_t}')
         return jolt_t
     return start_t, jolt_t
-# sum a list with another list element-wise
 
-def solve(data: str, part: int):
+
+def solve(data: str, part: int) -> int | tuple[int, int]:
     if part == 1:
         return start_machines(data, 1)
     if part == 2:

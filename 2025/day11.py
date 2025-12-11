@@ -17,10 +17,9 @@ def start_end_traverse(data: str) -> int:
 def traverse(data: str, parts: int = 0) -> int | tuple[int, int]:
     graph = {nodes[0][:-1]: set(nodes[1:]) for nodes in (line.split() for line in data.splitlines())}
     @cache
-    def visit(current: str, destination: str):
+    def visit(current: str, destination: str) -> int:
         return 1 if current == destination else sum(visit(node, destination) for node in graph.get(current, set()))
-    def traverse_requires(requires: list[list[str]]):
-        path_amount = 0
+    def traverse_requires(requires: list[list[str]], path_amount: int = 0) -> int:
         for required in requires:
             path_amount += prod(visit(required[i], required[i + 1]) for i in range(len(required) - 1))
         return path_amount
@@ -31,7 +30,7 @@ def traverse(data: str, parts: int = 0) -> int | tuple[int, int]:
     return traverse_requires([['you', 'out']]), traverse_requires([['svr', 'fft', 'dac', 'out'], ['svr', 'dac', 'fft', 'out']])
 
 
-def solve(data: str, part: int):
+def solve(data: str, part: int) -> int | tuple[int, int]:
     if part == 1:
         return traverse(data, 1)
     if part == 2:

@@ -1,7 +1,7 @@
 import re
 
 
-def invalid_id_detector(data: str, p2: bool = False):
+def invalid_id_detector(data: str, p2: bool = False) -> int:
     id_ranges = list(map(lambda x: tuple(map(int, x.split('-'))), data.replace('\n', '').split(',')))
     all_ids, invalid_ids = [i for start, end in id_ranges for i in range(start, end + 1)], []
     if not p2:
@@ -12,9 +12,9 @@ def invalid_id_detector(data: str, p2: bool = False):
                                                              flags=re.MULTILINE)]))
 
 
-def solve(data: str, part: int):
+def solve(data: str, part: int) -> int | tuple[int, int]:
     if part == 1:
         return invalid_id_detector(data)
     if part == 2:
         return invalid_id_detector(data, True)
-    return [invalid_id_detector(data), invalid_id_detector(data, True)]
+    return invalid_id_detector(data), invalid_id_detector(data, True)

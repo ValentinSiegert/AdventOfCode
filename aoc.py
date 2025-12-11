@@ -46,18 +46,14 @@ def run(year: Annotated[int, typer.Option("--year", "-y")] = int(TODAY.year),
     :param measure: Whether to measure the execution time.
     """
     year_create = not (year_dir := (CWD / f"{year}")).exists()
-    day_create = not (day_dir := (year_dir / f'day{day:02}')).exists()
+    day_create = not (day_path := (year_dir / f'day{day:02}.py')).exists()
     if year_create or day_create:
         if year_create:
             os.makedirs(year_dir)
             with open(year_dir / '__init__.py', 'w') as f:
                 f.write('')
-        if day_create:
-            os.makedirs(day_dir)
-            with open(day_dir / '__init__.py', 'w') as f:
-                f.write('')
-        shutil.copy(AOC_TEMPLATE, day_dir / f'day{day:02}.py')
-        print(f"{Color.BOLD}{Color.GREEN}Just initialized year {year} day {day} files, riddle me this!{Color.END}")
+        shutil.copy(AOC_TEMPLATE, day_path)
+        print(f"{Color.BOLD}{Color.GREEN}Just initialized year {year} day {day} file, riddle me this!{Color.END}")
         exit(0)
     puzzle = aocd.models.Puzzle(year=year, day=day)
     is_example_exec = (len(input_data) == 1 and input_data.isnumeric())
@@ -65,8 +61,7 @@ def run(year: Annotated[int, typer.Option("--year", "-y")] = int(TODAY.year),
         input_data = puzzle.input_data
     elif is_example_exec:
         input_data = puzzle.examples[int(input_data)].input_data
-    module = f'{year}.day{day:02}.day{day:02}'
-    solution = __import__(module, fromlist=[''])
+    solution = __import__(f'{year}.day{day:02}', fromlist=[''])
     if measure:
         import time
         start = time.time()

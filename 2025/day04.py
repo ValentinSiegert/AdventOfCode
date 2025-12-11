@@ -1,5 +1,5 @@
 
-def paper_stacks(data: str, p2: bool = False):
+def paper_stacks(data: str, p2: bool = False) -> int:
     max_y, max_x, removed_papers, loop = len(grid := data.splitlines()), len(grid[0]), 0, True
     while loop:
         loop, accessible_papers = False, []
@@ -22,9 +22,9 @@ def paper_stacks(data: str, p2: bool = False):
     return removed_papers
 
 
-def solve(data: str, part: int):
+def solve(data: str, part: int) -> int | tuple[int, int]:
     if part == 1:
         return paper_stacks(data)
     if part == 2:
         return paper_stacks(data, True)
-    return [paper_stacks(data), paper_stacks(data, True)]
+    return paper_stacks(data), paper_stacks(data, True)

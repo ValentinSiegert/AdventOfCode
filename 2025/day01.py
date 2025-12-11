@@ -1,6 +1,6 @@
 
 
-def unlock(data: str, p2: bool = False, lock_position: int = 50):
+def unlock(data: str, p2: bool = False, lock_position: int = 50) -> int:
     zero_count, at_zero = 0, lock_position == 0
     for i,line in enumerate(data.splitlines()):
         line = line.replace('R', '+').replace('L', '-')
@@ -11,9 +11,9 @@ def unlock(data: str, p2: bool = False, lock_position: int = 50):
     return zero_count
 
 
-def solve(data: str, part: int):
+def solve(data: str, part: int) -> int | tuple[int,int]:
     if part == 1:
         return unlock(data)
     if part == 2:
         return unlock(data,True)
-    return [unlock(data), unlock(data,True)]
+    return unlock(data), unlock(data,True)

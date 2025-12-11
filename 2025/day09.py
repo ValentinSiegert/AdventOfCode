@@ -1,7 +1,7 @@
 from itertools import combinations
 
 
-def point_inside(x: int, y: int, reds: list[tuple[int, int]]) -> bool:
+def point_inside(x: int, y: int, reds: list[tuple[int, ...]]) -> bool:
     inside = False
     for i in range(reds_amount:= len(reds)):
         (x1, y1), (x2, y2) = reds[i], reds[(i + 1) % reds_amount]
@@ -15,7 +15,7 @@ def point_inside(x: int, y: int, reds: list[tuple[int, int]]) -> bool:
             inside = not inside if x_int >= x else inside
     return inside
 
-def rect_inside(p1: tuple[int, int], p2: tuple[int, int], reds: list[tuple[int, int]]) -> bool:
+def rect_inside(p1: tuple[int, ...], p2: tuple[int, ...], reds: list[tuple[int, ...]]) -> bool:
     if not point_inside(p1[0], p2[1], reds) or not point_inside(p2[0], p1[1], reds):
         return False
     for i in range(red_amounts:= len(reds)):
@@ -39,9 +39,9 @@ def largest_square(data: str, part2: bool = False) -> int:
     return largest
 
 
-def solve(data: str, part: int):
+def solve(data: str, part: int) -> int | tuple[int, int]:
     if part == 1:
         return largest_square(data)
     if part == 2:
         return largest_square(data, True)
-    return [largest_square(data), largest_square(data, True)]
+    return largest_square(data), largest_square(data, True)
