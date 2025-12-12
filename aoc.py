@@ -31,9 +31,12 @@ typer_app = typer.Typer()
 
 def valid_year_day_combo(year: int, day: int) -> bool:
     most_recent_year = TODAY.year if TODAY.month == 12 else TODAY.year - 1
-    if year < 2015 or year > most_recent_year or day < 1 or day > 25 or (year >= 2025 and day > 12):
+    if year < 2015 or day < 1 or day > 25 or (year >= 2025 and day > 12):
         print(f"{Color.BOLD}{Color.RED}Invalid year/day combination for Advent of Code: year {year} day {day}.{Color.END}")
         print(f"{Color.BOLD}{Color.DARKCYAN}Known years are 2015 to {most_recent_year}, and days are 1 to 25, except for years 2025+ which only have days 1 to 12.{Color.END}")
+        exit(1)
+    if (year > most_recent_year) or (year == TODAY.year and day > TODAY.day):
+        print(f"{Color.BOLD}{Color.RED}Cannot access future Advent of Code puzzles: year {year} day {day}.{Color.END}")
         exit(1)
 
 
