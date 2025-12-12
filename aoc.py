@@ -74,6 +74,22 @@ def run(year: Annotated[int, typer.Option("--year", "-y")] = int(TODAY.year),
             print(f"{Color.BOLD}{Color.BLUE}Execution time for part 1:{Color.END} {time_str}")
         if part == 2:
             print(f"{Color.BOLD}{Color.BLUE}Execution time for part 2:{Color.END} {time_str}")
+    if response == 0:
+        print(f'{Color.BOLD}{Color.RED}No solution implemented for year {year} day {day} part {part}.{Color.END}')
+        print(f'{Color.BOLD}{Color.RED}Will not submit empty solution.{Color.END}')
+        submit = False
+    if response == (0, 0):
+        print(f'{Color.BOLD}{Color.RED}No solution implemented for year {year} day {day} parts 1 and 2.{Color.END}')
+        print(f'{Color.BOLD}{Color.RED}Will not submit empty solutions.{Color.END}')
+        submit = False
+    if response[0] == 0 and response[1] > 0:
+        print(f'{Color.BOLD}{Color.RED}No solution implemented for year {year} day {day} part 1.{Color.END}')
+        print(f'{Color.BOLD}{Color.RED}Will not submit empty solution for part 1.{Color.END}')
+        response, part = response[1], 2
+    if response[1] == 0 and response[0] > 0:
+        print(f'{Color.BOLD}{Color.RED}No solution implemented for year {year} day {day} part 2.{Color.END}')
+        print(f'{Color.BOLD}{Color.RED}Will not submit empty solution for part 2.{Color.END}')
+        response, part = response[0], 1
     if not is_example_exec and submit:
         if part == 1:
             aocd.submit(response, part='a', day=day, year=year)
