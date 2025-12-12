@@ -29,6 +29,14 @@ TODAY = datetime.datetime.today()
 typer_app = typer.Typer()
 
 
+def valid_year_day_combo(year: int, day: int) -> bool:
+    most_recent_year = TODAY.year if TODAY.month == 12 else TODAY.year - 1
+    if year < 2015 or year > most_recent_year or day < 1 or day > 25 or (year >= 2025 and day > 12):
+        print(f"{Color.BOLD}{Color.RED}Invalid year/day combination for Advent of Code: year {year} day {day}.{Color.END}")
+        print(f"{Color.BOLD}{Color.DARKCYAN}Known years are 2015 to {most_recent_year}, and days are 1 to 25, except for years 2025+ which only have days 1 to 12.{Color.END}")
+        exit(1)
+
+
 @typer_app.command(name='r')
 def run(year: Annotated[int, typer.Option("--year", "-y")] = int(TODAY.year),
         day: Annotated[int, typer.Option("--day", "-d")] = int(TODAY.day),
@@ -45,6 +53,7 @@ def run(year: Annotated[int, typer.Option("--year", "-y")] = int(TODAY.year),
     :param submit: Whether to submit the answer to the AoC website.
     :param measure: Whether to measure the execution time.
     """
+    valid_year_day_combo(year, day)
     year_create = not (year_dir := (CWD / f"{year}")).exists()
     day_create = not (day_path := (year_dir / f'day{day:02}.py')).exists()
     if year_create or day_create:
@@ -100,7 +109,6 @@ def run(year: Annotated[int, typer.Option("--year", "-y")] = int(TODAY.year),
             aocd.submit(response[1], part='b', day=day, year=year)
 
 
-
 @typer_app.command(name='p')
 def print_answer(year: Annotated[int, typer.Option("--year", "-y")] = int(TODAY.year),
                  day: Annotated[int, typer.Option("--day", "-d")] = int(TODAY.day),
@@ -111,6 +119,7 @@ def print_answer(year: Annotated[int, typer.Option("--year", "-y")] = int(TODAY.
     :param day: The day of the puzzle.
     :param part: The part of the puzzle. 0 for both parts.
     """
+    valid_year_day_combo(year, day)
     puzzle = aocd.models.Puzzle(year=year, day=day)
     if part == 0:
         print(f"{Color.BOLD}{Color.BLUE}Answer for year {year} day {day} part 1:{Color.END}\n{puzzle.answers[0]}")
@@ -127,6 +136,7 @@ def examples(year: Annotated[int, typer.Option("--year", "-y")] = int(TODAY.year
     :param year: The year of the puzzle.
     :param day: The day of the puzzle.
     """
+    valid_year_day_combo(year, day)
     puzzle = aocd.models.Puzzle(year=year, day=day)
     for i, example in enumerate(puzzle.examples):
         print(f"{Color.BOLD}{Color.YELLOW}Example {i} for year {year} day {day}:{Color.END}\n{example.input_data}\n")
